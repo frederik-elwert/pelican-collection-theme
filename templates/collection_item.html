@@ -1,0 +1,26 @@
+{% extends "!simple/article.html" %}
+
+{% block content %}
+<article>
+  <header>
+    <h2>
+      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
+         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+ {% import 'translations.html' as translations with context %}
+ {{ translations.translations_for(article) }}
+  </header>
+  {{ article.content }}
+  <aside>
+    <dl>
+    	{% for entry in COLLECTION_ITEM_META %}
+      <dt>{{ entry.label }}</dt>
+      <dd>{% if entry.type == "link" %}
+        <a href="{{ article[entry.value] }}">{{ article[entry.value] }}</a>
+      {% else %}
+      {{ article[entry.value] }}
+      {% endif %}</dd>
+    	{% endfor %}
+    </dl>
+  </aside>
+  </article>
+{% endblock %}
