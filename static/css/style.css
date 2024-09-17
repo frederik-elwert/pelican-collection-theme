@@ -24,6 +24,10 @@ h4 a { color: inherit !important }
 h5 a { color: inherit !important }
 h6 a { color: inherit !important }
 
+img {
+    max-width: 100%;
+}
+
 #menu li {
     display: inline;
 }
