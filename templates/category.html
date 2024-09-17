@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block title %}{{ SITENAME|striptags }} - {{ category }}{% endblock %}
+
+{% block content_title %}
+  <h2>{{ category }}</h2>
+{% endblock %}
+
+{% block content %}
+  {% if category == COLLECTION_CATEGORY %}
+    <h2>{{ category }}</h2>
+    <div class="grid is-col-min-12">
+      {% for article in articles_page.object_list %}
+        <article class="cell card">
+          {% if article.image %}
+            <div class="card-image">
+              <figure class="image is-square">
+                <img src="{{ article.image }}" alt="Image of {{ article.title|striptags }}" />
+              </figure>
+            </div>
+          {% elif article.images %}
+            <div id="{{ article.pid }}-carousel" class="carousel">
+              {% for image in article.images %}
+                <figure class="image is-square">
+                  <img src="{{ image }}" />
+                </figure>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <div class="card-content">
+            <h3 class="title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h3>
+            {% if article.summary %}
+            <div>{{ article.summary }}</div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if articles_page.has_other_pages() %}
+      {% include 'pagination.html' %}
+    {% endif %}
+
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
