@@ -69,7 +69,7 @@
             {% endif %}
             {% if DISPLAY_PAGES_ON_MENU %}
               {% for p in pages %}
-                <a class="navbar-item" href="{{ SITEURL }}/{{ p.url }}" {% if p==page %} aria-current="page" {% endif %}>{{ p.title }}</a></li>
+                <a class="navbar-item" href="{{ SITEURL }}/{{ p.url }}" {% if p==page %} aria-current="page" {% endif %}>{{ p.shorttitle or p.title }}</a></li>
               {% endfor %}
             {% endif %}
             </div> <!-- /navbar-end -->
