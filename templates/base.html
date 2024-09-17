@@ -37,6 +37,7 @@
         <link href="{{ FEED_DOMAIN }}/{% if TAG_FEED_RSS_URL %}{{ TAG_FEED_RSS_URL.format(slug=tag.slug) }}{% else %}{{ TAG_FEED_RSS.format(slug=tag.slug) }}{% endif %}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|striptags }} Tags RSS Feed" />
       {% endif %}
        <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/bulma.css" />
+       <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/bulma-carousel.min.css" />
        <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/custom.css" />
     {% endblock head %}
   </head>
@@ -90,8 +91,12 @@
         </address>
       </div> <!-- /container -->
     </footer>
+    <script type="text/javascript" src="{{ SITEURL }}/theme/js/bulma-carousel.min.js"></script>
     <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', () => {
+//////////////////
+// Main Menu    //
+//////////////////
+document.addEventListener('DOMContentLoaded', () => {
 
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -111,6 +116,18 @@
     });
   });
 
+});
+
+//////////////////
+// Carousel     //
+//////////////////
+document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.carousel');
+    carousels.forEach(carousel => {
+        bulmaCarousel.attach(carousel, {
+          loop: true
+        });
+    });
 });
     </script>
   </body>
