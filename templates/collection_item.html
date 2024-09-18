@@ -11,12 +11,12 @@
   </header>
   <div class="image-display">
     {% if article.image %}
-      <img src="{{ article.image }}" class="image-process-display" />
+      <img src="{{ SITEURL }}/{{ article.image }}" class="image-process-display" />
     {% endif %}
     {% if article.images %}
       <div id="item-carousel" class="carousel">
         {% for image in article.images %}
-        <img src="{{ image }}" class="image-process-display" />
+        <img src="{{ SITEURL }}/{{ image }}" class="image-process-display" />
         {% endfor %}
       </div>
     {% endif %}

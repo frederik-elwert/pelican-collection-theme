@@ -5,8 +5,8 @@
     {% set hero_article = articles|selectattr("pid", "equalto", HOME_HERO_ITEM)|first %}
     <div class="hero hero-image has-background-warning-dark mb-4">
       <div class="hero-body">
-        <img src="{{ hero_article.image }}" />
-        <p class="subtitle pl-4 py-3"><a class="has-text-light" href="{{ SITE_URL }}/{{ hero_article.url }}">{{ hero_article.title }}</a></p>
+        <img src="{{ SITEURL }}/{{ hero_article.image }}" />
+        <p class="subtitle pl-4 py-3"><a class="has-text-light" href="{{ SITEURL }}/{{ hero_article.url }}">{{ hero_article.title }}</a></p>
       </div>
     </div>
   {% endif %}
