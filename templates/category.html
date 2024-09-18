@@ -15,14 +15,14 @@
           {% if article.image %}
             <div class="card-image">
               <figure class="image is-square">
-                <img src="{{ article.image }}" alt="Image of {{ article.title|striptags }}" />
+                <img src="{{ article.image }}" class="image-process-thumb" alt="Image of {{ article.title|striptags }}" />
               </figure>
             </div>
           {% elif article.images %}
             <div id="{{ article.pid }}-carousel" class="carousel">
               {% for image in article.images %}
                 <figure class="image is-square">
-                  <img src="{{ image }}" />
+                  <img src="{{ image }}" class="image-process-thumb" alt="Image of {{ article.title|striptags }}" />
                 </figure>
               {% endfor %}
             </div>
