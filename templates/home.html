@@ -1,0 +1,47 @@
+{% extends "!simple/page.html" %}
+
+{% block content %}
+  {% if HOME_HERO_ITEM %}
+    {% set hero_article = articles|selectattr("pid", "equalto", HOME_HERO_ITEM)|first %}
+    <div class="hero hero-image has-background-warning-dark mb-4">
+      <div class="hero-body">
+        <img src="{{ hero_article.image }}" />
+        <p class="subtitle pl-4 py-3"><a class="has-text-light" href="{{ SITE_URL }}/{{ hero_article.url }}">{{ hero_article.title }}</a></p>
+      </div>
+    </div>
+  {% endif %}
+  <header>
+    <h2>{{ page.title }}</h2>
+  </header>
+  {% import 'translations.html' as translations with context %}
+  {{ translations.translations_for(page) }}
+
+  {{ page.content }}
+
+  {% if HOME_CATEGORY %}
+    {# We need to get from the category name to the actual category object #}
+    {% set category = dict(categories).keys()|select("equalto", HOME_CATEGORY)|first %}
+    {% set home_articles = dict(categories).get(category, [])[:HOME_MAX_ENTRIES] %}
+    {% if home_articles %}
+      <h3>{{ HOME_CATEGORY }}</h3>
+    {% endif %}
+    {% for article in home_articles %}
+      <article>
+          <header><h4><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h4></header>
+          <section>{{ article.summary }}</section>
+          <footer class="mt-2 has-text-grey">
+              <div>Published: <time datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }} </time></div>
+              <address>By
+                  {% for author in article.authors %}
+                      <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                  {% endfor %}
+              </address>
+          </footer>
+      </article>
+    {% endfor %}
+    {% if home_articles and home_articles|count > HOME_MAX_ENTRIES %}
+      <a href="{{ SITEURL }}/{{ category.url }}" class="button mt-4">» All articles</a>
+    {% endif %}
+  {% endif %}
+
+{% endblock %}
