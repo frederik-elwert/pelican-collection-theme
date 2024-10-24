@@ -1,0 +1,16 @@
+{% macro inline_image(pid) -%}
+{%- set item = collection_data[pid] %}
+  <div class="image-display has-background-warning-dark p-4 mb-4">
+    {% if item.image %}
+      <img src="{{ SITEURL }}/{{ item.image }}" class="image-process-display" />
+    {% endif %}
+    {% if item.images %}
+      <div id="item-carousel" class="carousel">
+        {% for image in item.images %}
+        <img src="{{ SITEURL }}/{{ image }}" class="image-process-display" />
+        {% endfor %}
+      </div>
+    {% endif %}
+    <p class="subtitle pt-3"><a class="has-text-light" href="{{ SITEURL }}/{{ item.url }}">{{ item.label }}</a></p>
+  </div>
+{%- endmacro %}

@@ -2,7 +2,7 @@
 
 {% block content %}
   {% if HOME_HERO_ITEM %}
-    {% set hero_article = articles|selectattr("pid", "equalto", HOME_HERO_ITEM)|first %}
+    {% set hero_article = collection_data[HOME_HERO_ITEM] %}
     <div class="hero hero-image has-background-warning-dark mb-4">
       <div class="hero-body">
         <img class="image-process-hero" src="{{ SITEURL }}/{{ hero_article.image }}" />
