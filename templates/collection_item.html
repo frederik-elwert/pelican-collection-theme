@@ -39,18 +39,22 @@
       </div>
     {% endif %}
   </div>
-  {{ article.content }}
-  <aside>
-    <dl>
-    	{% for entry in COLLECTION_ITEM_META %}
-      <dt>{{ entry.label }}</dt>
-      <dd>{% if entry.type == "link" %}
-        <a href="{{ article[entry.value] }}">{{ article[entry.value] }}</a>
-      {% else %}
-      {{ article[entry.value] }}
-      {% endif %}</dd>
-    	{% endfor %}
-    </dl>
-  </aside>
-  </article>
+  <div class="columns mt-2">
+    <div class="column is-two-thirds is-size-5">
+      {{ article.content }}
+    </div>
+    <aside class="column">
+      <dl>
+      	{% for entry in COLLECTION_ITEM_META %}
+        <dt>{{ entry.label }}</dt>
+        <dd>{% if entry.type == "link" %}
+          <a href="{{ article[entry.value] }}">{{ article[entry.value] }}</a>
+        {% else %}
+        {{ article[entry.value] }}
+        {% endif %}</dd>
+      	{% endfor %}
+      </dl>
+    </aside>
+  </div>
+</article>
 {% endblock %}
